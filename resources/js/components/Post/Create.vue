@@ -65,7 +65,7 @@
                   class="form-check-input"
                   type="checkbox"
                   id="inlineCheckbox1"
-                  value="poltics"
+                  value="Poltics"
                   v-model="type"
                 />
                 <label for="inlineCheckbox1">Poltics</label>
@@ -87,7 +87,7 @@
                   class="form-check-input"
                   type="checkbox"
                   id="inlineCheckbox3"
-                  value="health"
+                  value="Health"
                   v-model="type"
                 />
                 <label class="" for="inlineCheckbox3">Health</label>
@@ -98,7 +98,7 @@
                   class="form-check-input"
                   type="checkbox"
                   id="inlineCheckbox4"
-                  value="entertainment"
+                  value="Entertainment"
                   v-model="type"
                 />
                 <label for="inlineCheckbox4">Entertainment</label>
@@ -109,7 +109,7 @@
                   class="form-check-input"
                   type="checkbox"
                   id="inlineCheckbox5"
-                  value="sports"
+                  value="Sports"
                   v-model="type"
                 />
                 <label for="inlineCheckbox5">Sports</label>

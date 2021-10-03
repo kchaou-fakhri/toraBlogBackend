@@ -5,10 +5,12 @@ vue.use(VueRouter)
 
 import dashboard from '../components/Pages/Dashboard.vue'
 import createpost from '../components/Post/Create.vue'
+import listpost from '../components/Post/PostList.vue'
 
 const routes = [
     
     { path : '/createpost', component : createpost },
+    { path : '/list', component : listpost },
    
 ]
 

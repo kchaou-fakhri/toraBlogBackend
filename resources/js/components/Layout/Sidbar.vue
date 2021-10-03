@@ -38,16 +38,16 @@
         <li class="nav-item">
         <a class="nav-link" >
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a
+          <span>Create Post</span></a
         >
         </li>
           </router-link>
-     <router-link style="text-decoration:none;"  to="/createpost">
+     <router-link style="text-decoration:none;"  to="/list">
   
         <li class="nav-item">
         <a class="nav-link" >
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a
+          <span>Posts</span></a
         >
         </li>
           </router-link>
@@ -73,3 +73,5 @@
     
     </ul>
 </template>
+
+

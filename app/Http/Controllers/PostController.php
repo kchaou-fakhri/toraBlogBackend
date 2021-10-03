@@ -30,4 +30,15 @@ class PostController extends Controller
 
         return $post->save();
     }
+
+    public function getAll(){
+        return Post::get();
+    }
+
+    public function getbyid($id){
+        
+        return Post::where('id', $id)
+                ->get();
+    }
+
 }
