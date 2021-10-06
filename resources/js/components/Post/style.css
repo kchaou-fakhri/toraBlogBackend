@@ -1,0 +1,103 @@
+#btn-ellipse{
+    border-radius: 100%;
+  padding: 7px 12px;
+  margin-left: 2%;
+}
+#btn-ellipse-edit{
+border-radius: 100%;
+  padding: 5px 10px;
+  margin-left: 2%;
+}
+#action{
+
+display: flex;
+
+
+}
+
+@media screen and (max-width:922px){
+
+#btn-ellipse-edit{
+border-radius: 100%;
+  padding: 3px 8px;
+ 
+}
+}
+@media screen and (max-width:630px){
+
+#btn-ellipse-edit{
+border-radius: 100%;
+
+  padding: 3px 8px;
+ 
+
+}
+}
+
+
+
+@media screen and (max-width:630px){
+#action{
+ display: flex;
+}
+#created{
+  display:none
+}
+
+
+
+#btn-ellipse-edit{
+border-radius: 100%;
+  padding: 3px 8px;
+ 
+}
+}
+
+
+
+#delete   .modal-header, #delete-small-category .modal-header {
+  border-bottom: none;
+  margin-bottom: -25px;
+
+}
+
+#delete, #delete-small-category{
+
+
+text-align: center;
+    font-size: 26px;
+    margin: 10px 0 -10px;
+    color: #636363;
+}
+#update-modal .btn, #modal-center .btn, #small-category .btn, #update-small-modal .btn{
+  padding:0.3rem 2.5rem !important;
+}
+
+
+#delete .modal-footer, #delete-small-category .modal-footer {
+justify-content: center;
+}
+
+#delete p, #delete-small-category p{
+  text-align: center;
+    font-size: 14px
+}
+
+#delete .btn, #delete-small-category .btn{
+  padding: 1% 10%;
+ 
+}
+#delete .btn-danger, #delete-small-category .btn-danger{
+  background-color: #dc3545;
+
+}
+#delete  .btn-danger:hover, #delete-small-category .btn-danger:hover{
+  background-color: #ee2a3e;
+  
+}
+#delete i, #delete-small-category i{
+color: #dc3545;
+  font-size: 90px;
+  margin: 2%;
+   
+}

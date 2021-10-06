@@ -22,8 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('post')->group(function (){
     Route::post('/create', [PostController::class, 'create']);
     Route::get('/', [PostController::class, 'getall']);
-    route::get('/getbyid/{id}', [PostController::class, 'getbyid']);
-   
+    Route::get('/getbyid/{id}', [PostController::class, 'getbyid']);
+    Route::post('/update', [PostController::class, 'update']);
+    Route::post('/delete/{id}', [PostController::class, 'delete']);
 
 
 

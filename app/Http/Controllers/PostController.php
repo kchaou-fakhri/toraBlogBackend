@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
+use Symfony\Component\VarDumper\Caster\StubCaster;
 
 class PostController extends Controller
 {
@@ -26,7 +27,6 @@ class PostController extends Controller
             'type' => $request->type,
             'image' => $request->getSchemeAndHttpHost() . $url,
         ]);
-        $request->image->storeAs('/public/images', $today . $request->image->getClientOriginalName()  ); 
 
         return $post->save();
     }
@@ -39,6 +39,42 @@ class PostController extends Controller
         
         return Post::where('id', $id)
                 ->get();
+    }
+
+    public function update(Request $request){
+        $orig = Post::find($request->id);
+      
+        $request->validate([
+            'title' => 'required',
+            'post'  => 'required',
+            'type'  => 'required',
+            'image' => 'required'
+        ]);
+        if($request->image != $orig->image)
+        {
+            $today = date("H:i:s");
+            $today = $today . date("Ymd");
+            $url = Storage::url("images/" . $today  . $request->image->getClientOriginalName());
+            $request->image->storeAs('/public/images', $today . $request->image->getClientOriginalName()  ); 
+            $orig->image = $request->getSchemeAndHttpHost() . $url;
+
+        }
+
+        $orig->title = $request->title;
+        $orig->post  = $request->post;
+        $orig->type  = $request->type;
+     
+        return $orig->update();
+       
+   
+
+    }
+
+    public function delete($id){
+
+        $post = Post::find($id);
+      return  $post->delete();
+      
     }
 
 }
