@@ -51,7 +51,7 @@
         >
         </li>
           </router-link>
-           <router-link style="text-decoration:none;"  to="/createpost">
+           <router-link style="text-decoration:none;"  to="/login">
   
         <li class="nav-item">
         <a class="nav-link" >

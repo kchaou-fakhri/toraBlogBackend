@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +27,10 @@ Route::prefix('post')->group(function (){
     Route::get('/getbyid/{id}', [PostController::class, 'getbyid']);
     Route::post('/update', [PostController::class, 'update']);
     Route::post('/delete/{id}', [PostController::class, 'delete']);
+});
 
+Route::prefix('user')->group(function(){
 
-
+    Route::post('register', [RegisterController::class, 'register']);
+    Route::post('loginn', [LoginController::class, 'login']);
 });
