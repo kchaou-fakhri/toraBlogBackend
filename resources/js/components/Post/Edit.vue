@@ -192,11 +192,11 @@ export default {
 
 
         await axios
-          .post("api/post/update", formData)
+          .post("/api/post/update", formData)
           .then((response) => {
             if (response.status == 200) {
               this.iscreated = true;
-                 this.$router.push("/list/");
+               //  this.$router.push("/posts/");
             }
           })
           .catch(function (error) {
@@ -265,7 +265,7 @@ export default {
     const axios = require("axios");
     await axios
       .get(
-        "http://localhost:8000/api/post/getbyid/" + this.$root.$route.params.id
+        "/api/post/getbyid/" + this.$root.$route.params.id
       )
       .then((response) => {
         if (response.status == 200) {

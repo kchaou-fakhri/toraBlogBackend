@@ -25,7 +25,6 @@ Route::middleware('auth:sanctum')->get('/athenticated', function () {
     return true;
 });
 
-
 Route::group(['prefix' => 'post', 'middleware' => ['auth:sanctum']], function () {
     Route::post('/create', [PostController::class, 'create']);
     Route::get('/', [PostController::class, 'getall']);

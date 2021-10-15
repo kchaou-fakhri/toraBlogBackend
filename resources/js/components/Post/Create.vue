@@ -120,7 +120,7 @@
             <div class="col-sm-8"></div>
             <div class="col-sm-4 text-right">
               <button type="button" class="btn btn-danger">Cancel</button>
-              <button type="submit" @click="create()" class="btn btn-primary">
+              <button type="submit" @click.prevent="create" class="btn btn-primary">
                 Post
               </button>
             </div>
@@ -149,7 +149,7 @@ export default {
   },
 
   methods: {
-    async create() {
+     create() {
       this.getType();
 
       if (
@@ -165,8 +165,8 @@ export default {
         formData.append("image", this.data.image);
         formData.append("type", this.data.type);
 
-        await axios
-          .post("api/post/create", formData)
+         axios
+          .post("/api/post/create", formData)
           .then((response) => {
             if (response.status == 200) {
                this.iscreated = true

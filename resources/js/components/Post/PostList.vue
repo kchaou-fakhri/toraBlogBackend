@@ -267,7 +267,7 @@ showDeleteModel(item){
       const axios = require("axios");
       await axios
 
-        .post("http://localhost:8000/api/post/delete/" + item.id)
+        .post("/api/post/delete/" + item.id)
         .then((response) => {
           if (response.status == 200) {
             for (var i = 0; i < this.posts.length; i++) {
@@ -298,7 +298,7 @@ showDeleteModel(item){
   async created() {
     const axios = require("axios");
     await axios
-      .get("http://localhost:8000/api/post/")
+      .get("api/post/", )
       .then((response) => {
         if (response.status == 200) {
           this.posts = response.data;
