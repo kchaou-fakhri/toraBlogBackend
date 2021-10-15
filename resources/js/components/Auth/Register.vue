@@ -40,7 +40,7 @@ export default {
     },
     methods:{
         saveForm(){
-            axios.post('/api/user/register', this.form).then(() =>{
+            axios.post('/api/users/register', this.form).then(() =>{
                 console.log('saved');
             }).catch((error) =>{
                 this.errors = error.response.data.errors;

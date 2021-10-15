@@ -1,16 +1,16 @@
 <template>
   <div id="wrapper">
     <!-- Sidebar -->
-    <sidbr />
+    <sidbr v-if="isLogIn == true" />
     <!-- End of Sidebar -->
 
     <div id="content-wrapper" class="d-flex flex-column">
-      <!-- Main Content -->
+     
       <div id="content">
         
-        <navbar />
+        <navbar  v-if="isLogIn == true"/>
           <div class="container-fluid">
-              <router-view></router-view>
+              <router-view  :isLogIn="isLogIn"></router-view>
           </div>
       </div>
       <foooter />
@@ -24,12 +24,29 @@ import foooter from "../Layout/Footer.vue";
 import sidbr from "../Layout/Sidbar.vue";
 
 export default {
+  data(){
+
+    return{
+      user : '',
+      isLogIn : false
+    }
+  },
   components: {
     navbar,
     foooter,
     sidbr,
   },
+  
+
   mounted() {
+     const axios = require('axios');
+       axios.get('/api/user').then((result) => {
+         this.isLogIn = true;
+        
+       }).catch((err) => {
+         
+       });
+
     (function ($) {
       "use strict"; // Start of use strict
 

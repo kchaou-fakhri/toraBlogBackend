@@ -42,7 +42,7 @@
         >
         </li>
           </router-link>
-     <router-link style="text-decoration:none;"  to="/list">
+     <router-link style="text-decoration:none;"  to="/posts">
   
         <li class="nav-item">
         <a class="nav-link" >

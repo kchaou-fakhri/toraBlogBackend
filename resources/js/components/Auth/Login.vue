@@ -1,20 +1,17 @@
 <template>
-     <div class="flex flex-wrap w-full justify-center items-center pt-56">
-        <div class="flex flex-wrap max-w-xl">
-            <div class="p-2 text-2xl text-gray-800 font-semibold"><h1>Login to your account</h1></div>
-            <div class="p-2 w-full">
-                <label for="email">Your e-mail</label>
-                <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" placeholder="Email" type="email" v-model="form.email">
-            </div>
-            <div class="p-2 w-full">
-                <label for="password">Password</label>
-                <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" placeholder="Password" type="password" v-model="form.password" name="password">
-            </div>
-            <div class="p-2 w-full mt-4">
-                <button @click.prevent="loginUser" type="submit" class="btn btn-primary">Login</button>
-            </div>
-        </div> 
-    </div>
+
+  <div class="wrapper">
+    <form class="form-signin">       
+      <h2 class="form-signin-heading">Please login</h2>
+      <input type="text" class="form-control" name="username" v-model="form.email" placeholder="Email Address" required="" autofocus="" />
+      <input type="password" class="form-control"  v-model="form.password" name="password" placeholder="Password" required=""/>      
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+      </label>
+      <button @click.prevent="loginUser" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+    </form>
+  </div>
+    
 </template>
 <script>
 export default {
@@ -28,14 +25,81 @@ export default {
         }
     },
     methods:{
-         loginUser(){
-             axios.post('/api/user/login', this.form).then(() =>{
-             //    this.$router.push({ name: "/"}); 
+
+         setUser: function() {
+       this.isLogIn = true;
+      },
+        async loginUser(){
+           
+    const axios = require("axios");
+       await axios.post('/api/users/login', this.form).then(() =>{
+       
+               // this.$router.go(0)
               console.log('saved');
-             }).catch((error) =>{
-         this.errors = error.response.data.errors;
+             }).catch((error) =>{ //  this.setUser();
+      
+          
+               // this.$router.push('/posts'); 
+                  this.errors = error.response.data.errors;
             })
          }
-    }
+    },
+    
+  props: ['isLogIn']
 }
 </script>
+
+<style lang="scss">
+
+
+body {
+	background: #eee !important;	
+}
+
+.wrapper {	
+	margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);  
+
+  .form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+	.checkbox {
+	  font-weight: normal;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+	
+
+		&:focus {
+		  z-index: 2;
+		}
+	}
+
+	input[type="text"] {
+	  margin-bottom: -1px;
+	  border-bottom-left-radius: 0;
+	  border-bottom-right-radius: 0;
+	}
+
+	input[type="password"] {
+	  margin-bottom: 20px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+	}
+}
+
+</style>

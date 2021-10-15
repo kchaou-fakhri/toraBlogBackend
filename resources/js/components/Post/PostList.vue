@@ -293,6 +293,7 @@ showDeleteModel(item){
       this.currentPage = 1;
     },
   },
+  
 
   async created() {
     const axios = require("axios");

@@ -16,6 +16,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 
 
+
 const axios = require('axios').default;
 
 Vue.component('mainapp', require('./components/Main.vue').default);
