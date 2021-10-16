@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PostController;
@@ -32,7 +33,6 @@ Route::group(['prefix' => 'post', 'middleware' => ['auth:sanctum']], function ()
     Route::post('/update', [PostController::class, 'update']);
     Route::post('/delete/{id}', [PostController::class, 'delete']);
 });
-
 
 
 

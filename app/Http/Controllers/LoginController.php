@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\LoginController as AuthLoginController;
 use App\Models\User;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 class LoginController extends Controller
 {
 
-    public function CheckAuth(){
+    public static function CheckAuth(){
         return Response( Auth::user());
     }
 
@@ -26,7 +27,12 @@ class LoginController extends Controller
         ]);
 
        if(Auth::attempt($request->only('email', 'password'))){
-            return response()->json(Auth::user(),200);
+           $user = Auth::user();
+           response()->json($user,200);
+           return json_encode([
+            'csrfToken' => csrf_token(),
+        ]);
+           return  LoginController::CheckAuth();
         }
         throw ValidationException::withMessages([
             'email' => ['The provided credentials are incorect.']

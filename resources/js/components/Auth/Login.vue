@@ -34,7 +34,7 @@ export default {
     const axios = require("axios");
        await axios.post('/api/users/login', this.form).then(() =>{
        
-               this.$router.go(0)
+              this.$router.go(0)
               console.log('saved');
              }).catch((error) =>{ //  this.setUser();
       
