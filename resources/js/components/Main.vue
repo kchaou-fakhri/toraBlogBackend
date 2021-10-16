@@ -1,7 +1,7 @@
 <template>
 <div>
-         <dashboard ></dashboard>
-
+         <dashboard  v-if="isLogIn == true"></dashboard>
+          <router-view v-else></router-view>
         
    </div>      
 
@@ -21,14 +21,14 @@ export default {
      dashboard
   },
   mounted(){
-  /*  const axios = require('axios');
+  const axios = require('axios');
        axios.get('/api/user').then((result) => {
          this.isLogIn = true;
         
        }).catch((err) => {
          
        });
-  */
+  
          }
         
 

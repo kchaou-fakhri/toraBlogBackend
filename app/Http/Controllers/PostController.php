@@ -20,7 +20,7 @@ class PostController extends Controller
         $today = date("H:i:s");
         $today = $today . date("Ymd");
         $url = Storage::url("images/" . $today  . $request->image->getClientOriginalName());
-
+        $request->image->storeAs('/public/images', $today . $request->image->getClientOriginalName()  ); 
         $post = new Post([
             'title' => $request->title,
             'post' => $request->post,

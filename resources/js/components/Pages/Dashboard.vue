@@ -1,16 +1,16 @@
 <template>
   <div id="wrapper">
     <!-- Sidebar -->
-    <sidbr v-if="isLogIn == true" />
+    <sidbr  />
     <!-- End of Sidebar -->
 
     <div id="content-wrapper" class="d-flex flex-column">
      
       <div id="content">
         
-        <navbar  v-if="isLogIn == true"/>
+        <navbar />
           <div class="container-fluid">
-              <router-view  :isLogIn="isLogIn"></router-view>
+              <router-view  ></router-view>
           </div>
       </div>
       <foooter />
@@ -39,13 +39,7 @@ export default {
   
 
   mounted() {
-     const axios = require('axios');
-       axios.get('/api/user').then((result) => {
-         this.isLogIn = true;
-        
-       }).catch((err) => {
-         
-       });
+    
 
     (function ($) {
       "use strict"; // Start of use strict
