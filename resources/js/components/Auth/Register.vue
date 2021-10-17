@@ -1,51 +1,162 @@
 <template>
-      <div class="flex flex-wrap w-full justify-center items-center pt-56">
-        <div class="flex flex-wrap max-w-xl">
-            <div class="p-2 text-2xl text-gray-800 font-semibold"><h1>Register an account</h1></div>
-            <div class="p-2 w-full">
-                <label class="w-full" for="name">Name</label>
-                <span class="w-full text-red-500" v-if="errors.name">{{errors.name[0]}}</span>
-                <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" placeholder="Name" type="text" v-model="form.name" >
-            </div>
-            <div class="p-2 w-full">
-                <label for="email">Your e-mail</label>
-                <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" placeholder="Email" type="email" v-model="form.email">
-            </div>
-            <div class="p-2 w-full">
-                <label for="password">Password</label>
-                <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" placeholder="Password" type="password" v-model="form.password" name="password">
-            </div>
-            <div class="p-2 w-full">
-                <label for="confirm_password">Confirm Password</label>
-                <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" placeholder="Confirm Password" type="password" v-model="form.password_confirmation" name="password_confirmation">
-            </div>
-            <div class="p-2 w-full mt-4">
-                <button @click.prevent="saveForm" type="submit" class="btn btn-primary">Register</button>
-            </div>
-        </div> 
+<div>
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Create Editer</h1>
+  </div>
+  <div v-if="iscreated == true" class="alert alert-success" role="alert">
+ Post published successfully!
+</div>
+<div v-if="ifErorr == true" class="alert alert-danger" role="alert">
+ Something he not running please try again with another data
+</div>
+    <div class="card">
+      <div class="card-body">
+        <b-form @submit.stop.prevent="onSubmit">
+
+            <!-- ****Input Name**** -->
+          <b-form-group
+            id="example-input-group-1"
+            label="Name"
+            label-for="example-input-1"
+          >
+            <b-form-input
+              id="example-input-1"
+              name="example-input-1"
+              v-model="$v.form.name.$model"
+              :state="validateState('name')"
+              aria-describedby="input-1-live-feedback"
+            ></b-form-input>
+
+            <b-form-invalid-feedback id="input-1-live-feedback"
+              >This is a required field and must be at least 3
+              characters.</b-form-invalid-feedback
+            >
+          </b-form-group>
+
+  <!-- ****Input Email**** -->
+             <b-form-group
+            id="example-input-group-1"
+            label="Email"
+            label-for="example-input-1"
+          >
+            <b-form-input
+              id="example-input-1"
+              name="example-input-1"
+              type="email"
+              v-model="$v.form.email.$model"
+              :state="validateState('email')"
+              aria-describedby="input-1-live-feedback"
+            ></b-form-input>
+
+            <b-form-invalid-feedback id="input-1-live-feedback"
+              >Email is required</b-form-invalid-feedback
+            >
+          </b-form-group>
+
+           <!-- ****Input Password**** -->
+             <b-form-group
+            id="example-input-group-1"
+            label="Password"
+            label-for="example-input-1"
+          >
+            <b-form-input
+              id="example-input-1"
+              name="example-input-1"
+              type="password"
+              v-model="$v.form.password.$model"
+              :state="validateState('password')"
+              aria-describedby="input-1-live-feedback"
+            ></b-form-input>
+
+            <b-form-invalid-feedback id="input-1-live-feedback"
+              >Password is required and must be at least 6
+              characters.</b-form-invalid-feedback
+            >
+          </b-form-group>
+
+         
+
+          <b-button type="submit" variant="primary">Submit</b-button>
+          <b-button class="ml-2" @click="resetForm()">Reset</b-button>
+        </b-form>
+      </div>
     </div>
+  </div>
 </template>
+
+<style>
+body {
+  padding: 1rem;
+}
+</style>
+
 <script>
+import { validationMixin } from "vuelidate";
+import { required, minLength } from "vuelidate/lib/validators";
+
 export default {
-    data(){
-        return{
-            form:{
-                name: '',
-                email: '',
-                password:'',
-                password_confirmation:''
-            },
-            errors:[]
-        }
+  mixins: [validationMixin],
+  data() {
+    return {
+     iscreated : false,
+     ifErorr : '',
+      form: {
+        name: null,
+        email : null,
+        password: null,
+      },
+    };
+  },
+  validations: {
+    form: {
+      password: {
+        required,
+         minLength: minLength(6),
+      },
+      email : {
+        required ,
+         
+      },
+      name: {
+        required,
+        minLength: minLength(3),
+      },
     },
-    methods:{
-        saveForm(){
-            axios.post('/api/users/register', this.form).then(() =>{
+  },
+  methods: {
+    validateState(name) {
+      const { $dirty, $error } = this.$v.form[name];
+      return $dirty ? !$error : null;
+    },
+    resetForm() {
+      this.form = {
+        name:     null,
+        password: null,
+        email:    null,
+      };
+
+      this.$nextTick(() => {
+        this.$v.$reset();
+      });
+    },
+    onSubmit() {
+      this.$v.form.$touch();
+      if (this.$v.form.$anyError) {
+        return;
+      }
+        axios.post('/api/auth/register', this.form).then(() =>{
                 console.log('saved');
+                this.resetForm();
+                
+                this.iscreated = true;
+                this.ifErorr = false
+                setTimeout(() => {   this.iscreated = false; }, 5000);
+                
             }).catch((error) =>{
+                this.ifErorr = true
                 this.errors = error.response.data.errors;
             })
-        }
-    }
-}
+    },
+  },
+};
 </script>

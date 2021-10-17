@@ -252,8 +252,8 @@ export default {
   },
   mounted() {
     // Set the initial number of items
-    this.totalRows = this.items.length;
-  },
+   
+     },
   methods: {
     info(item) {
       this.$router.push("/editpost/" + item.id);
@@ -287,11 +287,11 @@ showDeleteModel(item){
       this.infoModal.title = "";
       this.infoModal.content = "";
     },
-    onFiltered(filteredItems) {
-      // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    },
+   onFiltered(filteredItems) {
+        // Trigger pagination to update the number of buttons/pages due to filtering
+        this.totalRows = filteredItems.length
+        this.currentPage = 1
+      }
   },
   
 
@@ -316,6 +316,7 @@ showDeleteModel(item){
           });
 
           this.items = this.posts;
+           this.totalRows = this.items.length;
         }
       })
       .catch(function (error) {

@@ -9,6 +9,9 @@ import listpost from '../components/Post/PostList.vue'
 import editpost from '../components/Post/Edit.vue'
 import login from '../components/Auth/Login.vue'
 import register from '../components/Auth/Register.vue'
+import users from '../components/Auth/ListEditor.vue'
+import edituser from '../components/Auth/EditUser.vue'
+
 
 function guardMyroute(to, from, next) {
     var isAuthenticated = false;
@@ -65,7 +68,9 @@ const routes = [
     { path: '/posts', component: listpost, name: 'posts', beforeEnter: guardMyroute, },
     { path: '/editpost/:id', component: editpost, beforeEnter: guardMyroute, },
     { path: '/login', component: login, beforeEnter: guardLogin },
-    { path: '/register', component: register, beforeEnter: guardMyroute },
+    { path: '/newuser', component: register, beforeEnter: guardMyroute },
+    { path: '/users', component: users, beforeEnter: guardMyroute },
+    { path: '/edituser/:id', component: edituser, beforeEnter: guardMyroute },
     {
         path: '*',
         beforeEnter: guardAny,

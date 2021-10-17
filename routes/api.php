@@ -4,6 +4,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,12 +35,18 @@ Route::group(['prefix' => 'post', 'middleware' => ['auth:sanctum']], function ()
     Route::post('/delete/{id}', [PostController::class, 'delete']);
 });
 
-
+Route::group(['prefix' => 'auth', 'middleware' => ['auth:sanctum']], function () {
+    Route::post('register', [RegisterController::class, 'register']);
+    Route::get('/', [UserController::class, 'getAll']);
+    Route::get('getbyid/{id}', [UserController::class, 'getById']);
+    
+});
 
 Route::prefix('users')->group(function () {
 
-    Route::post('register', [RegisterController::class, 'register']);
+   
     Route::post('login',    [LoginController::class,    'login']);
     Route::post('logout',   [LoginController::class,    'logout']);
-    Route::get('check',     [LoginController::class,    'CheckAuth']);
+
+  //  Route::get('check',     [LoginController::class,    'CheckAuth']);
 });

@@ -7,6 +7,9 @@
 <div v-if="iscreated == true" class="alert alert-success" role="alert">
  Post published successfully!
 </div>
+<div v-if="ifEmpty == true" class="alert alert-danger" role="alert">
+ {{Textempty}} is required !
+</div>
     <div class="card">
       <div class="card-body">
         <form class="needs-validation" novalidate>
@@ -135,6 +138,8 @@
 export default {
   data() {
     return {
+      ifEmpty : false,
+      Textempty : '',
       data: {
         title: "",
         post: "",
@@ -170,12 +175,31 @@ export default {
           .then((response) => {
             if (response.status == 200) {
                this.iscreated = true
-                           
+               this.ifEmpty = false;
+                this.$router.push("/posts");
+             
             }
           })
           .catch(function (error) {
             console.log(error);
           });
+      }
+      else{
+        this.Textempty =''
+        if( this.data.title == ""){
+          this.Textempty = 'Title, '
+        }
+         if( this.data.type == ""){
+          this.Textempty += 'Type, '
+        }
+         if( this.data.post == ""){
+          this.Textempty += 'Post Text, '
+        }
+         if( this.data.image == ""){
+          this.Textempty += 'Image, '
+        }
+       
+        this.ifEmpty = true;
       }
     
 

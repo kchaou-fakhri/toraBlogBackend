@@ -19,7 +19,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" >
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a
         >
@@ -37,7 +37,7 @@
   
         <li class="nav-item">
         <a class="nav-link" >
-          <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fas fa-newspaper " ></i>
           <span>Create Post</span></a
         >
         </li>
@@ -46,17 +46,27 @@
   
         <li class="nav-item">
         <a class="nav-link" >
-          <i class="fas fa-fw fa-chart-area"></i>
+<i class="fas fa-clipboard-list"></i>
           <span>Posts</span></a
         >
         </li>
           </router-link>
-           <router-link style="text-decoration:none;"  to="/login">
+           <router-link style="text-decoration:none;"  to="/newuser">
   
         <li class="nav-item">
         <a class="nav-link" >
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a
+         <i class="fas fa-user-plus"></i>
+          <span>New Editor</span></a
+        >
+        </li>
+          </router-link>
+
+            <router-link style="text-decoration:none;"  to="/users">
+  
+        <li class="nav-item">
+        <a class="nav-link" >
+        <i class="fas fa-address-book"></i>
+          <span>Editor List</span></a
         >
         </li>
           </router-link>

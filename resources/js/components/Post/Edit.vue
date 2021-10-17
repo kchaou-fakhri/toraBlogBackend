@@ -7,6 +7,9 @@
     <div v-if="iscreated == true" class="alert alert-success" role="alert">
       Post published successfully!
     </div>
+    <div v-if="ifEmpty == true" class="alert alert-danger" role="alert">
+ {{Textempty}} is required !
+</div>
     <div class="card">
       <div class="card-body">
         <form class="needs-validation" novalidate>
@@ -143,7 +146,7 @@
                 Cancel
              
               </button>
-              <button type="submit" @click="update()" class="btn btn-success">
+              <button type="submit" @click.prevent="update" class="btn btn-success">
                 Edit <i class="fas fa-edit"></i>
               </button>
             </div>
@@ -158,6 +161,8 @@
 export default {
   data() {
     return {
+       ifEmpty : false,
+      Textempty : '',
       data: {
           id : '',
         title: "",
@@ -174,12 +179,12 @@ export default {
 
   methods: {
     async update() {
-      if (this.data.type == "") {
+      if (this.data.type != "") {
         this.getType();
       }
       if (
         this.data.title != "" &&
-        this.data.type != "" &&
+       
         this.data.post != ""
       ) {
         let formData = new FormData();
@@ -188,7 +193,7 @@ export default {
         formData.append("owner", this.data.owner);
         formData.append("image", this.data.image);
         formData.append("type", this.data.type);
-         formData.append("id", this.data.id);
+        formData.append("id", this.data.id);
 
 
         await axios
@@ -196,13 +201,30 @@ export default {
           .then((response) => {
             if (response.status == 200) {
               this.iscreated = true;
-               //  this.$router.push("/posts/");
+              this.ifEmpty = false;
+                 this.$router.push("/posts");
             }
           })
           .catch(function (error) {
             console.log(error);
           });
       }
+      else{
+        this.Textempty =''
+        if( this.data.title == ""){
+          this.Textempty = 'Title, '
+        }
+        
+         if( this.data.post == ""){
+          this.Textempty += 'Post Text, '
+        }
+         if( this.data.image == ""){
+          this.Textempty += 'Image, '
+        }
+       
+        this.ifEmpty = true;
+      }
+    
     },
 
     handleFileUpload() {
@@ -276,6 +298,7 @@ export default {
             );
           });
           this.data = response.data[0];
+         
           // this.ConvertType(this.post.type)
           //  this.addBrToPost();
         }
