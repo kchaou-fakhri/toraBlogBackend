@@ -267,12 +267,12 @@ showDeleteModel(item){
       const axios = require("axios");
       await axios
 
-        .post("/api/post/delete/" + item.id)
+        .post("/api/auth/delete/" + item.id)
         .then((response) => {
           if (response.status == 200) {
-            for (var i = 0; i < this.posts.length; i++) {
-              if (this.posts[i].id === item.id) {
-                this.posts.splice(i, 1);
+            for (var i = 0; i < this.users.length; i++) {
+              if (this.users[i].id === item.id) {
+                this.users.splice(i, 1);
               }
             }
             this.$bvModal.hide('delete');
@@ -302,7 +302,7 @@ showDeleteModel(item){
       .then((response) => {
         if (response.status == 200) {
           this.users = response.data;
-            console.log(this.users)
+      
           this.users.forEach((element) => {
           
             element.created_at = element.created_at.substr(

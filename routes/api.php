@@ -39,6 +39,8 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth:sanctum']], function ()
     Route::post('register', [RegisterController::class, 'register']);
     Route::get('/', [UserController::class, 'getAll']);
     Route::get('getbyid/{id}', [UserController::class, 'getById']);
+    Route::post('update',   [UserController::class,    'update']);
+    Route::post('delete/{id}',   [UserController::class,    'delete']);
     
 });
 
@@ -47,6 +49,8 @@ Route::prefix('users')->group(function () {
    
     Route::post('login',    [LoginController::class,    'login']);
     Route::post('logout',   [LoginController::class,    'logout']);
+   
+
 
   //  Route::get('check',     [LoginController::class,    'CheckAuth']);
 });

@@ -4,7 +4,7 @@
     <h1 class="h3 mb-0 text-gray-800">Update Editer Profil</h1>
   </div>
   <div v-if="iscreated == true" class="alert alert-success" role="alert">
- Post published successfully!
+ Editer updated successfully!
 </div>
 <div v-if="ifErorr == true" class="alert alert-danger" role="alert">
  Something he not running please try again with another data
@@ -62,7 +62,7 @@
             <b-form-input
               id="example-input-1"
               name="example-input-1"
-              type="password"
+              
               v-model="$v.form.password.$model"
               :state="validateState('password')"
               aria-describedby="input-1-live-feedback"
@@ -73,7 +73,7 @@
               characters.</b-form-invalid-feedback
             >
           </b-form-group>
-
+ 
          
 
           <b-button type="submit" variant="success">Update</b-button>
@@ -84,11 +84,7 @@
   </div>
 </template>
 
-<style>
-body {
-  padding: 1rem;
-}
-</style>
+
 
 <script>
 import { validationMixin } from "vuelidate";
@@ -130,6 +126,7 @@ export default {
     },
     resetForm() {
       this.form = {
+        id : null,
         name:     null,
         password: null,
         email:    null,
@@ -144,7 +141,7 @@ export default {
       if (this.$v.form.$anyError) {
         return;
       }
-        axios.post('/api/auth/register', this.form).then(() =>{
+        axios.post('/api/auth/update', this.form).then(() =>{
                 console.log('saved');
                 this.resetForm();
                 
@@ -173,7 +170,10 @@ export default {
               element.created_at.indexOf("T")
             );
           });
-          this.form = response.data[0];
+          this.form.id = response.data[0].id;
+           this.form.name = response.data[0].name;
+            this.form.email = response.data[0].email;
+        
          
           // this.ConvertType(this.post.type)
           //  this.addBrToPost();

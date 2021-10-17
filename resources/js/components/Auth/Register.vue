@@ -4,7 +4,7 @@
     <h1 class="h3 mb-0 text-gray-800">Create Editer</h1>
   </div>
   <div v-if="iscreated == true" class="alert alert-success" role="alert">
- Post published successfully!
+ Editer created successfully!
 </div>
 <div v-if="ifErorr == true" class="alert alert-danger" role="alert">
  Something he not running please try again with another data
@@ -84,11 +84,6 @@
   </div>
 </template>
 
-<style>
-body {
-  padding: 1rem;
-}
-</style>
 
 <script>
 import { validationMixin } from "vuelidate";
