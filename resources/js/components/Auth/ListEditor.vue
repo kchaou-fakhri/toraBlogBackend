@@ -163,6 +163,16 @@
             >
               <i class="far fa-trash-alt"></i>
             </b-button>
+
+            <b-button
+              pill
+              variant="success"
+              size="sm"
+             @click="showDeleteModel(row.item)"
+            >
+             <i class="fas fa-user-cog"> </i>
+             Permissions
+            </b-button>
           </template>
 
           <template #row-details="row">
@@ -219,7 +229,8 @@ export default {
         { key: "id", label: "Id", sortable: true, sortDirection: "desc" },
         { key: "name", label: "Name", sortable: true },
         { key: "email", label: "Email", sortable: true },
-        { key: "created_at", label: "Created", sortable: true },
+         { key: "role", label: "Role", sortable: true },
+       
         
 
         { key: "actions", label: "Actions" },
@@ -303,16 +314,12 @@ showDeleteModel(item){
         if (response.status == 200) {
           this.users = response.data;
       
-          this.users.forEach((element) => {
-          
-            element.created_at = element.created_at.substr(
-              0,
-              element.created_at.indexOf("T")
-            );
-          });
-
-          this.items = this.users;
+         this.items = this.users;
+         
+              
+           
            this.totalRows = this.items.length;
+        
         }
       })
       .catch(function (error) {

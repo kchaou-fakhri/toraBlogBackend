@@ -298,7 +298,7 @@ showDeleteModel(item){
   async created() {
     const axios = require("axios");
     await axios
-      .get("api/post/", )
+      .get("api/post/getall", )
       .then((response) => {
         if (response.status == 200) {
           this.posts = response.data;

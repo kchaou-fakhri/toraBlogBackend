@@ -31,8 +31,13 @@ class PostController extends Controller
         return $post->save();
     }
 
+        
+    public function getbypage(){
+        return Post::orderBy('created_at', 'DESC')->paginate(5);
+    }
+
     public function getAll(){
-        return Post::get();
+        return Post::orderBy('created_at', 'DESC')->get();
     }
 
     public function getbyid($id){
@@ -44,12 +49,7 @@ class PostController extends Controller
     public function update(Request $request){
         $orig = Post::find($request->id);
       
-        $request->validate([
-            'title' => 'required',
-            'post'  => 'required',
-            'type'  => 'required',
-            'image' => 'required'
-        ]);
+
         if($request->image != $orig->image)
         {
             $today = date("H:i:s");
@@ -59,11 +59,21 @@ class PostController extends Controller
             $orig->image = $request->getSchemeAndHttpHost() . $url;
 
         }
+        if( $request->type != '')
+        {
+            $orig->type  = $request->type;
+        }
+        if( $request->title != '')
+        {
+            $orig->title  = $request->title;
+        }
+        if( $request->post != '')
+        {
+            $orig->post  = $request->post;
+        }
 
-        $orig->title = $request->title;
-        $orig->post  = $request->post;
-        $orig->type  = $request->type;
-     
+       
+       
         return $orig->update();
        
    

@@ -179,6 +179,8 @@ export default {
 
   methods: {
     async update() {
+    
+      
       if (this.data.type != "") {
         this.getType();
       }

@@ -8,9 +8,9 @@
      
       <div id="content">
         
-        <navbar />
+        <navbar :user="message" />
           <div class="container-fluid">
-              <router-view  ></router-view>
+              <router-view :user="message" ></router-view>
           </div>
       </div>
       <foooter />
@@ -27,7 +27,7 @@ export default {
   data(){
 
     return{
-      user : '',
+     
       isLogIn : false
     }
   },
@@ -37,9 +37,9 @@ export default {
     sidbr,
   },
   
-
+props : ['message'],
   mounted() {
-    
+  
 
     (function ($) {
       "use strict"; // Start of use strict

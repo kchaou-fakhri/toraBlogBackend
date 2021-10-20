@@ -1,6 +1,6 @@
 <template>
 <div>
-         <dashboard  v-if="isLogIn == true"></dashboard>
+         <dashboard :message="user" v-if="isLogIn == true"></dashboard>
           <router-view v-else></router-view>
         
    </div>      
@@ -24,6 +24,9 @@ export default {
   const axios = require('axios');
        axios.get('/api/user').then((result) => {
          this.isLogIn = true;
+        // console.log(result)
+         this.user = result.data
+        
         
        }).catch((err) => {
          
