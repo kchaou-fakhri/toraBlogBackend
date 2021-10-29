@@ -101,8 +101,8 @@
                 :aria-describedby="ariaDescribedby"
                 class="mt-1"
               >
-                <b-form-checkbox value="title">Id</b-form-checkbox>
-                <b-form-checkbox value="type">Name</b-form-checkbox>
+                <b-form-checkbox value="id">Id</b-form-checkbox>
+                <b-form-checkbox value="name">Name</b-form-checkbox>
               </b-form-checkbox-group>
             </b-form-group>
           </b-col>
@@ -147,7 +147,7 @@
           small
           @filtered="onFiltered"
         >
-          <template #cell(name)="row">
+          <template #cell(dd)="row">
             {{ row.value.first }} {{ row.value.last }}
           </template>
 
@@ -163,16 +163,18 @@
             >
               <i class="far fa-trash-alt"></i>
             </b-button>
-
+<router-link :to="{ name: 'manage', params: { id: row.item.id }}">
             <b-button
               pill
               variant="success"
               size="sm"
-             @click="showDeleteModel(row.item)"
+          
             >
+
              <i class="fas fa-user-cog"> </i>
              Permissions
             </b-button>
+            </router-link>
           </template>
 
           <template #row-details="row">
@@ -269,7 +271,7 @@ export default {
     info(item) {
       this.$router.push("/edituser/" + item.id);
     },
-showDeleteModel(item){
+  showDeleteModel(item){
         this.$bvModal.show('delete');
         this.data = item;
     },
@@ -316,9 +318,10 @@ showDeleteModel(item){
       
          this.items = this.users;
          
-              
+           
            
            this.totalRows = this.items.length;
+         
         
         }
       })

@@ -12,8 +12,10 @@ use Illuminate\Validation\ValidationException;
 class LoginController extends Controller
 {
 
-    public static function CheckAuth(){
-        return Response( Auth::user());
+    public function CheckAuth(){
+   
+      
+       
     }
 
 

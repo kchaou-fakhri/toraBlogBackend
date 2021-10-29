@@ -13,12 +13,14 @@ class RegisterController extends Controller
         $request->validate([
             'name' => 'required|max:25',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
+            'role' => 'required'
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'role'  => $request->role,
             'password' => Hash::make($request->password)
         ]);
     }

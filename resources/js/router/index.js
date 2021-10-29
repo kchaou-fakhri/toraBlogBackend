@@ -11,7 +11,7 @@ import login from '../components/Auth/Login.vue'
 import register from '../components/Auth/Register.vue'
 import users from '../components/Auth/ListEditor.vue'
 import edituser from '../components/Auth/EditUser.vue'
-import manageuser from '../components/Role/ManageUsers.vue'
+import manageuser from '../components/Role/ChangePermissions.vue'
 
 
 function guardMyroute(to, from, next) {
@@ -67,7 +67,7 @@ const routes = [
     },
 
     { path: '/posts', component: listpost, name: 'posts', beforeEnter: guardMyroute, },
-    { path: '/manage', component: manageuser,  beforeEnter: guardMyroute, },
+    { path: '/manage/:id', name :'manage', component: manageuser,  beforeEnter: guardMyroute, },
     { path: '/editpost/:id', component: editpost, beforeEnter: guardMyroute, },
     { path: '/newuser', component: register, beforeEnter: guardMyroute },
     { path: '/users', component: users, beforeEnter: guardMyroute },

@@ -218,7 +218,7 @@ export default {
       fields: [
         { key: "id", label: "Id", sortable: true, sortDirection: "desc" },
         { key: "title", label: "Title", sortable: true },
-        { key: "post", label: "Post", sortable: true },
+      
         { key: "created_at", label: "Posted", sortable: true },
         { key: "type", label: "Type", sortable: true },
 
@@ -304,9 +304,9 @@ showDeleteModel(item){
           this.posts = response.data;
 
           this.posts.forEach((element) => {
-            element.post = element.post.slice(0, 50) + "...";
+            element.post = element.post.slice(0, 70) + "...";
             if (element.title.length > 30) {
-              element.title = element.post.slice(0, 30) + "...";
+              element.title = element.post.slice(0, 80) + "...";
             }
 
             element.created_at = element.created_at.substr(

@@ -106,5 +106,7 @@ props : ['message'],
       });
     })(jQuery); // End of use strict
   },
+
+  
 };
 </script>

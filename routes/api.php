@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -47,6 +48,7 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth:sanctum']], function ()
 
 
 
+
 Route::prefix('post')->group(function () {
     Route::get('/getall', [PostController::class, 'getall']);
     Route::get('/', [PostController::class, 'getbypage']);
@@ -69,8 +71,11 @@ Route::prefix('users')->group(function () {
   //  Route::get('check',     [LoginController::class,    'CheckAuth']);
 });
 
+//Route::get('getpermissions/{id}', [PermissionController::class, 'getPermission']);
 
 Route::group(['prefix' => 'role' , 'middleware' => ['auth:sanctum']], function(){
 
     Route::post('changepermission', [UserPermissionController::class, 'changePermission']);
+    Route::get('getpermissions/{id}', [PermissionController::class, 'getPermission']);
+
 });
